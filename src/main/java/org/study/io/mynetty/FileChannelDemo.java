@@ -1,21 +1,18 @@
-package mynetty;
+package org.study.io.mynetty;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.nio.channels.ServerSocketChannel;
 import java.nio.charset.StandardCharsets;
 
 public class FileChannelDemo {
 
-    public static void main(String[] args) throws Exception{
+    /*public static void main(String[] args) throws Exception{
         FileChannelDemo fileChannelDemo = new FileChannelDemo();
         //fileChannelDemo.writeFile();
         fileChannelDemo.readFile();
-    }
+    }*/
 
     private void writeFile(){
         try {

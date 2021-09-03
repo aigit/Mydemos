@@ -1,3 +1,5 @@
+package org.study.collection;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -6,7 +8,7 @@ public class MyLinkList {
 
     private static List mylist = new ArrayList();
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         LinkedList mylinkedList = new LinkedList();
         for (int i = 1; i < 14; i++) {
             mylinkedList.add(i);
@@ -18,7 +20,7 @@ public class MyLinkList {
         mylist.forEach(e->{
             System.out.print(e+",");
         });
-    }
+    }*/
 
     /**
      * 排序逃逸

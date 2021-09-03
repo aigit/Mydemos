@@ -1,4 +1,4 @@
-package mynetty;
+package org.study.io.mynetty;
 
 
 import java.io.InputStream;
@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 
 public class BioDemo {
 
-    public static void main(String[] args) throws Exception {
+    /*public static void main(String[] args) throws Exception {
         ExecutorService threadPools = Executors.newCachedThreadPool();
 
         final ServerSocket serverSocket = new ServerSocket(6666);
@@ -23,11 +23,7 @@ public class BioDemo {
                 }
             });
         }
-
-
-
-
-    }
+    }*/
 
     private static void handleSocket(Socket mySocket){
         byte[] mybyte = new byte[1024];

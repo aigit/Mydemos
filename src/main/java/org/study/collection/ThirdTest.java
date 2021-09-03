@@ -1,13 +1,15 @@
+package org.study.collection;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class ThirdTest {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         ThirdTest thirdTest = new ThirdTest();
         int maxlength = thirdTest.lengthOfLongestSubstring("abababbacf");
         System.out.println("最大长度："+maxlength);
-    }
+    }*/
     public int lengthOfLongestSubstring(String s) {
         Map<String, Map<Character,Integer>> maxLengthMap = new HashMap<>();
         int max = 0;

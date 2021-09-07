@@ -1,9 +1,8 @@
-package org.study.concurrent;
+package org.study.concurrent.basic;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.LockSupport;
 
 @Slf4j
 public class TestInterrupt {
@@ -11,7 +10,6 @@ public class TestInterrupt {
     private static Thread thread;
 
     public void monitor(){
-
         thread = new Thread(()->{
             while (true){
                 if(thread.isInterrupted()){
@@ -28,11 +26,26 @@ public class TestInterrupt {
         },"monitor");
 
         thread.start();
-        LockSupport.park();
     }
 
     public void interupts(){
         thread.interrupt();
+    }
+
+    public void test(){
+        TestInterrupt testInterrupt = new TestInterrupt();
+        testInterrupt.monitor();
+        try {
+            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        testInterrupt.interupts();
+        try {
+            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

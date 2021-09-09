@@ -9,6 +9,13 @@ import org.study.concurrent.basic.WaitNotifyTest;
 import org.study.concurrent.locks.ReentrantLockTest;
 import org.study.concurrent.singleon.InnerclassSingle;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Deque;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+
 @Slf4j
 public class MyApplication {
 
@@ -31,8 +38,10 @@ public class MyApplication {
         /*InnerclassSingle instance = InnerclassSingle.getInstance();
         log.info("获取到的单例:{}",instance);*/
 
-        LamdaAtomicTest lamdaAtomicTest = new LamdaAtomicTest();
-        lamdaAtomicTest.test();
+        /*LamdaAtomicTest lamdaAtomicTest = new LamdaAtomicTest();
+        lamdaAtomicTest.test();*/
+
+
 
     }
 }

@@ -6,15 +6,17 @@ import org.study.concurrent.basic.ParkPrintTest;
 import org.study.concurrent.basic.ReentrantLockPrint;
 import org.study.concurrent.basic.TestInterrupt;
 import org.study.concurrent.basic.WaitNotifyTest;
+import org.study.concurrent.locks.CountDownLatchTest;
 import org.study.concurrent.locks.ReentrantLockTest;
+import org.study.concurrent.parallel.ForkJoinTest;
+import org.study.concurrent.parallel.RecursiveTest;
 import org.study.concurrent.singleon.InnerclassSingle;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Deque;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.*;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Slf4j
 public class MyApplication {
@@ -41,7 +43,13 @@ public class MyApplication {
         /*LamdaAtomicTest lamdaAtomicTest = new LamdaAtomicTest();
         lamdaAtomicTest.test();*/
 
+        /*ForkJoinTest forkJoinTest = new ForkJoinTest();
+        RecursiveTest recursiveTest = new RecursiveTest();
+        forkJoinTest.test();
+        recursiveTest.test();*/
 
+        CountDownLatchTest countDownLatchTest = new CountDownLatchTest();
+        countDownLatchTest.test();
 
     }
 }

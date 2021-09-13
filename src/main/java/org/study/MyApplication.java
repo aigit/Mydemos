@@ -1,6 +1,7 @@
 package org.study;
 
 import lombok.extern.slf4j.Slf4j;
+import org.study.collection.map.HashMapTest;
 import org.study.concurrent.atomic.LamdaAtomicTest;
 import org.study.concurrent.basic.ParkPrintTest;
 import org.study.concurrent.basic.ReentrantLockPrint;
@@ -15,6 +16,7 @@ import org.study.concurrent.singleon.InnerclassSingle;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -48,8 +50,10 @@ public class MyApplication {
         forkJoinTest.test();
         recursiveTest.test();*/
 
-        CountDownLatchTest countDownLatchTest = new CountDownLatchTest();
-        countDownLatchTest.test();
+        /*CountDownLatchTest countDownLatchTest = new CountDownLatchTest();
+        countDownLatchTest.test();*/
+        HashMapTest hashMapTest = new HashMapTest();
+        hashMapTest.test();
 
     }
 }

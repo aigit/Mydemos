@@ -35,5 +35,7 @@ public class HashMapTest {
             map.put(i,i);
         }
         log.info("map:{}",map);
+        String a = "abc";
+        a.intern();
     }
 }

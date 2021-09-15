@@ -12,6 +12,7 @@ import org.study.concurrent.locks.ReentrantLockTest;
 import org.study.concurrent.parallel.ForkJoinTest;
 import org.study.concurrent.parallel.RecursiveTest;
 import org.study.concurrent.singleon.InnerclassSingle;
+import org.study.str.StringTest;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -52,8 +53,11 @@ public class MyApplication {
 
         /*CountDownLatchTest countDownLatchTest = new CountDownLatchTest();
         countDownLatchTest.test();*/
-        HashMapTest hashMapTest = new HashMapTest();
-        hashMapTest.test();
+        /*HashMapTest hashMapTest = new HashMapTest();
+        hashMapTest.test();*/
+
+        StringTest stringTest = new StringTest();
+        stringTest.test();
 
     }
 }

@@ -32,7 +32,8 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
    ```html
    - 串行回收:单线程  -XX:+UseSerialGC=Serial+SerialOld
    - 并行回收:吞吐量优先 -XX:+UseParallelGC/-XX:+UseParallelOldGC
-   - 
+   - CMS:响应时间优先
+   ![img.png]
    
      
    ```

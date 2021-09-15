@@ -56,6 +56,18 @@ public class MyApplication {
         /*HashMapTest hashMapTest = new HashMapTest();
         hashMapTest.test();*/
 
+        int hash = "world".hashCode();
+        log.info("hash:{}",hash);
+        log.info("before move:{}",Integer.toBinaryString(hash));
+        log.info("moved:{}", hash>>>16);
+        log.info("moved bit:{}", Integer.toBinaryString(hash>>>16));
+
+        int a = 14,b=15;
+        a=a^b;
+        b=a^b;
+        a=a^b;
+        log.info("a={},b={}",a,b);
+
         StringTest stringTest = new StringTest();
         stringTest.test();
 

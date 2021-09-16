@@ -1,4 +1,8 @@
 ###性能调优
+Jvm 内存模型
+![img_2.png](img_2.png)
+![img_1.png](img_1.png)
+---
 字符串池
 ```html
 StringTable 串池的大小调优 如果字符串常量池比较大,
@@ -15,6 +19,16 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
     ```html
     dump文件 jmap -dump:format=b,live,file=x.bin pid
     -XX:+PrintGCDetails -verbose:gc
+    GCROOT:
+        {
+            虚拟机栈(方法栈)中的参数、局部变量、临时变量等,
+            方法区中引用到的静态变量,
+            字符串池String Table,
+            本地方法栈引用的对象,
+            虚拟机内部基本类型对应的Class对象,常驻异常等,
+            被synchronized锁持有的对象
+            
+        }
     ```
  - jvm参数
    ```html
@@ -28,12 +42,21 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
    GC详情 -XX:+PrintGCDetails -verbose:gc
    FullGC 前 MinorGC -XX:+ScavengeBeforeFullGC
    ```
+   
+ - 引用类型
+   ```html
+   SoftReference: 当没有强引用且垃圾回收内存不够时会被回收
+   WeekReference: 当没有强引用且垃圾回收时会被回收
+   虚引用: 一般指向本地内存，当本地内存无引用时，会被放入回收队列，
+         由cleaner调用unsafe的freeMemory释放内存
+   终结器引用:
+```
  - 垃圾回收器
    ```html
    - 串行回收:单线程  -XX:+UseSerialGC=Serial+SerialOld
    - 并行回收:吞吐量优先 -XX:+UseParallelGC/-XX:+UseParallelOldGC
    - CMS:响应时间优先
-   ![img.png]
    
      
-   ```
+   ``` 
+   ![img.png](img.png)

@@ -13,8 +13,11 @@ import org.study.concurrent.parallel.ForkJoinTest;
 import org.study.concurrent.parallel.RecursiveTest;
 import org.study.concurrent.singleon.InnerclassSingle;
 import org.study.jvm.CglibOOMTest;
+import org.study.jvm.SoftReferenceTest;
+import org.study.jvm.WeekReferenceTest;
 import org.study.str.StringTest;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Deque;
@@ -25,7 +28,7 @@ import java.util.concurrent.locks.ReentrantLock;
 @Slf4j
 public class MyApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
         /*TestInterrupt testInterrupt  = new TestInterrupt();
         testInterrupt.test();*/
@@ -62,8 +65,13 @@ public class MyApplication {
         /*StringTest stringTest = new StringTest();
         stringTest.test();*/
 
-        CglibOOMTest cglibOOMTest = new CglibOOMTest();
-        cglibOOMTest.test();
+        /*CglibOOMTest cglibOOMTest = new CglibOOMTest();
+        cglibOOMTest.test();*/
+        /*SoftReferenceTest softReferenceTest = new SoftReferenceTest();
+        softReferenceTest.test();*/
+
+        WeekReferenceTest weekReferenceTest = new WeekReferenceTest();
+        weekReferenceTest.test();
 
     }
 }

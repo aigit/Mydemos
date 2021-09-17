@@ -50,13 +50,17 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
    虚引用: 一般指向本地内存，当本地内存无引用时，会被放入回收队列，
          由cleaner调用unsafe的freeMemory释放内存
    终结器引用:
-```
+   ```
  - 垃圾回收器
    ```html
    - 串行回收:单线程  -XX:+UseSerialGC=Serial+SerialOld
    - 并行回收:吞吐量优先 -XX:+UseParallelGC/-XX:+UseParallelOldGC
-   - CMS:响应时间优先
-   
-     
+   - 响应时间优先
+   CMS回收器:
+     (新生代配合)-XX:+UseParNewGC -XX:+UseConcMarkSweepGC
+     初始标记-->并发标记-->重新标记-->并发清除
+   Garbage First收集器:
+     跨代引用
    ``` 
    ![img.png](img.png)
+ 

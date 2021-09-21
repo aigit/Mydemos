@@ -15,6 +15,9 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
 ``` 
 ---
 垃圾回收  
+ - 栈上分配
+   - 逃逸分析 -XX:+DoEscapeAnalysis
+   - 标量分配 -XX:+EliminateAllocations
  - 可达性分析
     ```html
     dump文件 jmap -dump:format=b,live,file=x.bin pid
@@ -37,6 +40,7 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
    新生代大小 -Xmn 或 (-XX:NewSize=size + -XX:MaxNewSize=size )
    幸存区比例（动态） -XX:InitialSurvivorRatio=ratio 和 -XX:+UseAdaptiveSizePolicy
    幸存区比例 -XX:SurvivorRatio=ratio
+   老年代-新生代比例:-XX:NewRatio
    晋升阈值 -XX:MaxTenuringThreshold=threshold
    晋升详情 -XX:+PrintTenuringDistribution
    GC详情 -XX:+PrintGCDetails -verbose:gc
@@ -63,4 +67,11 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
      跨代引用
    ``` 
    ![img.png](img.png)
+   
+ - 类加载阶段
+   
+   ```html
+   加载-->链接(验证、准备(final常量会初始化)、解析)-->初始化
+   ```
+   ![img_3.png](img_3.png)
  

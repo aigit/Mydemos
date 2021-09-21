@@ -72,6 +72,7 @@ public class MyApplication {
 
         WeekReferenceTest weekReferenceTest = new WeekReferenceTest();
         weekReferenceTest.test();
+        Thread.currentThread().getContextClassLoader();
 
     }
 }

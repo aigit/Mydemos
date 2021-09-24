@@ -70,9 +70,24 @@ public class MyApplication {
         /*SoftReferenceTest softReferenceTest = new SoftReferenceTest();
         softReferenceTest.test();*/
 
-        WeekReferenceTest weekReferenceTest = new WeekReferenceTest();
+        /*WeekReferenceTest weekReferenceTest = new WeekReferenceTest();
         weekReferenceTest.test();
-        Thread.currentThread().getContextClassLoader();
+        Thread.currentThread().getContextClassLoader();*/
+
+
+        //
+        String s4 = "22";
+        String s3 = new String("2")+new String("2");
+        s3.intern();
+        System.out.println(s3==s4);
+        byte[] bytes5 = "5".getBytes();
+        byte b = 0;
+        for (int i = 0; i < bytes5.length; i++) {
+           b = (byte) (b^bytes5[i]);
+        }
+        System.out.println(b);
+        byte[] bytes8 = "8".getBytes();
+        System.out.println(bytes5);
 
     }
 }

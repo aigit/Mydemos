@@ -13,6 +13,7 @@ import org.study.concurrent.parallel.ForkJoinTest;
 import org.study.concurrent.parallel.RecursiveTest;
 import org.study.concurrent.singleon.InnerclassSingle;
 import org.study.jvm.CglibOOMTest;
+import org.study.jvm.GCLogTest;
 import org.study.jvm.SoftReferenceTest;
 import org.study.jvm.WeekReferenceTest;
 import org.study.str.StringTest;
@@ -76,7 +77,7 @@ public class MyApplication {
 
 
         //
-        String s4 = "22";
+        /*String s4 = "22";
         String s3 = new String("2")+new String("2");
         s3.intern();
         System.out.println(s3==s4);
@@ -87,7 +88,9 @@ public class MyApplication {
         }
         System.out.println(b);
         byte[] bytes8 = "8".getBytes();
-        System.out.println(bytes5);
+        System.out.println(bytes5);*/
+        GCLogTest gcLogTest = new GCLogTest();
+        gcLogTest.allocate();
 
     }
 }

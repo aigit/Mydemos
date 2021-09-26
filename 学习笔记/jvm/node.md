@@ -1,6 +1,7 @@
 ###性能调优
 Jvm 内存模型
 ![img_2.png](img_2.png)
+
 ![img_1.png](img_1.png)
 ---
 字符串池
@@ -71,6 +72,9 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
     
 
  - 垃圾回收器
+   
+   ![img_4.png](img_4.png)
+   
    ```html
    - 串行回收:单线程  -XX:+UseSerialGC=Serial+SerialOld
    - 并行回收:吞吐量优先 -XX:+UseParallelGC/-XX:+UseParallelOldGC
@@ -80,9 +84,16 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
      初始标记-->并发标记-->重新标记-->并发清除
    Garbage First收集器:
      跨代引用
-   ```
-   ![img_4.png](img_4.png)
    
+   ```
+   ![image-20210924235412540](image-20210924235412540.png)
+   
+   
+   
+- ![image-20210925100925295](image-20210925100925295.png)
+
+    
+
  - 类加载阶段
    
    ```html

@@ -14,7 +14,7 @@ public class Employee {
     private int age;
     private MyDate birthday;
 
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -25,7 +25,25 @@ public class Employee {
     @Override
     public int hashCode() {
         return Objects.hash(name, birthday);
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (age != employee.age) return false;
+        if (!name.equals(employee.name)) return false;
+        return birthday.equals(employee.birthday);
     }
 
-
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + age;
+        result = 31 * result + birthday.hashCode();
+        return result;
+    }
 }

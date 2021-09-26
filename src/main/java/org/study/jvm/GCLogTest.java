@@ -12,13 +12,23 @@ public class GCLogTest {
         _1 = new byte[one*2];
         _2 = new byte[one*2];
         _3 = new byte[one*2];
-        _4 = new byte[one*5];
+        _4 = new byte[one*2];
 
+
+        Thread thread = new Thread(()->{
+            try {
+                TimeUnit.SECONDS.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
         try {
-            TimeUnit.SECONDS.sleep(3000);
+            thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        thread.start();
     }
+
 
 }

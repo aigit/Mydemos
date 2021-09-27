@@ -48,6 +48,12 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
    晋升详情 -XX:+PrintTenuringDistribution
    GC详情 -XX:+PrintGCDetails -verbose:gc
    FullGC 前 MinorGC -XX:+ScavengeBeforeFullGC
+   ``` 
+   ```html
+   配置jvm参数
+   查看当前的参数: java -XX:+PrintFlagsFinal
+   查看命令参数: java -XX:+PrintCommandLineFlags
+   查看初始化参数： java -XX:+PrintFlagsInitial
    ```
    
  - 引用类型
@@ -67,6 +73,12 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
      - 非压缩式：会产生内存碎片，再分配对象空间采用空闲列表方法
     回收策略比较:
         低延迟>吞吐量>内存占用
+    出发FullGC的条件:
+        - 老年代空间不足
+        - 方法区空间不足
+        - 显式调用System.gc()
+        - Minor GC进入老年代的数据的平均大小>老年代可用内存
+        - 大对象直接进入老年代而老年代的可用内存不足
     ```
 
     
@@ -84,8 +96,16 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
      初始标记-->并发标记-->重新标记-->并发清除
    Garbage First收集器:
      跨代引用
-   
+     -XX:G1HeapRegionSize
+         设置每个Region的大小，2的n次幂，默认是堆内存的1/2000
+     -XX:MaxGCPauseMillis
+         最大GC停顿时间，默认200ms
+     -XX:ParallelGCThread
+         STW时GC线程数的值，最多设置为8
+     -XX:
    ```
+   ![img_5.png](img_5.png)
+   ![img_6.png](img_6.png)
    ![image-20210924235412540](image-20210924235412540.png)
    
    

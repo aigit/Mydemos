@@ -2,6 +2,7 @@ package org.study;
 
 import lombok.extern.slf4j.Slf4j;
 import org.study.collection.map.HashMapTest;
+import org.study.concurrent.atomic.CasCounterTest;
 import org.study.concurrent.atomic.LamdaAtomicTest;
 import org.study.concurrent.basic.ParkPrintTest;
 import org.study.concurrent.basic.ReentrantLockPrint;
@@ -90,8 +91,11 @@ public class MyApplication {
         System.out.println(b);
         byte[] bytes8 = "8".getBytes();
         System.out.println(bytes5);*/
-        GCLogTest gcLogTest = new GCLogTest();
-        gcLogTest.allocate();
+       /* GCLogTest gcLogTest = new GCLogTest();
+        gcLogTest.allocate();*/
+
+        CasCounterTest casCounterTest = new CasCounterTest();
+        casCounterTest.test();
 
     }
 }

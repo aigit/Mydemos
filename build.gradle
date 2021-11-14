@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.9.RELEASE'
+    id 'org.springframework.boot' version '2.5.6'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
 }
@@ -33,11 +33,13 @@ repositories {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile 'org.redisson:redisson-spring-data-25:3.16.4'
+    compile 'org.redisson:redisson-spring-boot-starter:3.16.4'
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    implementation group: 'io.netty', name: 'netty-all', version: '4.1.51.Final'
+    //implementation group: 'io.netty', name: 'netty-all', version: '4.1.51.Final'
     compileOnly group: 'org.projectlombok', name: 'lombok',version: '1.18.6'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     annotationProcessor 'org.projectlombok:lombok'

@@ -1,5 +1,8 @@
 ####并发编程笔记 
-- Synchronized
+- Synchronized 
+```html
+  synchronized只能锁对象或类
+```
 ![img.png](img.png)
   ![img_1.png](img_1.png)
   

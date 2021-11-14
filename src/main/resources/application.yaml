@@ -1,0 +1,4 @@
+spring:
+  redis:
+    redission:
+      file: classpath:redisson.yaml

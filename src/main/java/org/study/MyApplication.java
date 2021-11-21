@@ -15,9 +15,6 @@ import org.study.concurrent.parallel.RecursiveTest;
 import org.study.concurrent.singleon.InnerclassSingle;
 import org.study.jvm.CglibOOMTest;
 import org.study.jvm.GCLogTest;
-import org.study.jvm.SoftReferenceTest;
-import org.study.jvm.WeekReferenceTest;
-import org.study.str.StringTest;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;

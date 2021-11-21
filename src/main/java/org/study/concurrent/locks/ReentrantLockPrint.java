@@ -1,4 +1,4 @@
-package org.study.concurrent.basic;
+package org.study.concurrent.locks;
 
 import lombok.extern.slf4j.Slf4j;
 

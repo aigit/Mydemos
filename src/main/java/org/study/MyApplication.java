@@ -1,6 +1,7 @@
 package org.study;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.BeanFactory;
 import org.study.collection.map.HashMapTest;
 import org.study.concurrent.atomic.CasCounterTest;
 import org.study.concurrent.atomic.LamdaAtomicTest;

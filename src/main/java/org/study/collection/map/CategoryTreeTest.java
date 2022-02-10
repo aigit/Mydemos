@@ -14,9 +14,9 @@ public class CategoryTreeTest {
         List<Category> categories =  getCateList();
         categories.forEach(System.out::println);
         CategoryTreeTest categoryTreeTest = new CategoryTreeTest();
-        //categoryTreeTest.findLeafs(categories);
+        categoryTreeTest.findLeafs(categories);
 
-        categoryTreeTest.findPath(categories);
+        //categoryTreeTest.findPath(categories);
 
     }
 

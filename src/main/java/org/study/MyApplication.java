@@ -15,6 +15,7 @@ import org.study.concurrent.parallel.RecursiveTest;
 import org.study.concurrent.singleon.InnerclassSingle;
 import org.study.jvm.CglibOOMTest;
 import org.study.jvm.GCLogTest;
+import org.study.str.StringTest;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -62,8 +63,12 @@ public class MyApplication {
 
 
 
-        /*StringTest stringTest = new StringTest();
-        stringTest.test();*/
+        StringTest stringTest = new StringTest();
+        try {
+            stringTest.test();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
         /*CglibOOMTest cglibOOMTest = new CglibOOMTest();
         cglibOOMTest.test();*/
@@ -91,8 +96,8 @@ public class MyApplication {
        /* GCLogTest gcLogTest = new GCLogTest();
         gcLogTest.allocate();*/
 
-        CasCounterTest casCounterTest = new CasCounterTest();
-        casCounterTest.test();
+        /*CasCounterTest casCounterTest = new CasCounterTest();
+        casCounterTest.test();*/
 
     }
 }

@@ -69,7 +69,6 @@ public class CategoryTreeTest {
             v.forEach(System.out::println);
             log.info("==============");
         });
-
         List<Category> resultCateList = new ArrayList<>();
         this.convertTreePath(1,categoryMap,resultCateList);
         resultCateList.forEach(System.out::println);

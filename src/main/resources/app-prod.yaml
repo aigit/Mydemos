@@ -1,0 +1,200 @@
+###测试环境配置
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://mysql-cn-north-1-b08cbb61002243d3.rds.jdcloud.com:3306/zc_online?useUnicode=true&characterEncoding=utf-8&useSSL=false&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: zc
+    password: CGj9R57maki+D8RJ
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+  #####redis
+  redis:
+    host: redis-v0j29xp6j3yw-proxy-nlb.jvessel-open-hb.jdcloud.com
+    port: 6379
+    password: CGj9R57m
+    database: 0
+    pool:
+      timeout: 0
+
+#pc微信
+weixin:
+  login:
+    appKey: wxc956e82f1a497553
+    appSecert: 3f80c6a9e37db4aeb49dd53ce77b1899
+  redirect:
+    url: https://www.crc-musiconline.com/web/wx/callBack
+    bind: https://www.crc-musiconline.com/web/wx/callBind
+
+  pay:
+    sandbox: false
+    appId: wx34abf1dc2ad6c731
+    mchId: 1297651801
+    tradeType: APP
+    privateKey: 3wSXBpPioMtQ2lTaaEq7cT4CIL6Wlni1
+    notifyUrl: https://www.crc-musiconline.com/app/notify/weixin/notify
+  share:
+    appId: wxc956e82f1a497553
+    appSecert: 3f80c6a9e37db4aeb49dd53ce77b1899
+
+#小程序登录
+wx:
+  login:
+    url: https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code
+    appKey: wx9460dabc9fe5c096
+    appSecert: e7a282438173c03d8ba51b662089e9c8
+
+
+######跨域设置
+ui:
+  cors:
+    allowedorigins: "*"
+    pathpattern: "/**"
+
+
+#云存储配置
+jd:
+  oss:
+    accessKey: 67A71BFC3D6E96C1EB3844C6A3D6F0EF
+    secretKey: 8BB62F673045DEB7ADEADE331C4B4071
+    endpoint: https://s3.cn-north-1.jdcloud-oss.com
+    writepoint: https://zc-test.s3.cn-north-1.jdcloud-oss.com
+    bucketName: zc-test
+  sms:
+    accessKeyId: 48A314C33B187E877B707E488900BC5D
+    accessKeySecret: 8810BF2BC720142207DF459E379BBA47
+    regionId: cn-north-1
+    templateId: mb_1386ecf210484d228184d6ebb9bcf1da
+    signId: qm_8afc1a2950254a6db897ea991531e6dd
+    blankMobile: 10000000008,10000000007,10000000001,10000000002,10000000003,10000000004,10000000005,10000000006,10000000009,13717705514,13800000001,13800000002,13800000003,13800000004,13800000005,13800000006,13800000007,13800000008,13800000009,13800000010,13800000011,13800000012,13800000013,13800000014,13800000015,13800000016,13800000017,13800000018,13800000019,13800000020,13800000021,13800000022,13800000023,13800000024,13800000025,13800000026,13800000027,13800000028,13800000029,13800000030,13800000031,13800000032,13800000033,13800000034,13800000035,13800000036,13800000037,13800000038,13800000039,13800000040,13800000041,13800000042,13800000043,13800000044,13800000045,13800000046,13800000047,13800000048,13800000049,13800000050,13800000051,13800000052,13800000053,13800000054,13800000055,13800000056,13800000057,13800000058,13800000059,13800000060,13800000061,13800000062,13800000063,13800000064,13800000065,13800000066,13800000067,13800000068,13800000069,13800000070,13800000071,13800000072,13800000073,13800000074,13800000075,13800000076,13800000077,13800000078,13800000079,13800000080,13800000081,13800000082,13800000083,13800000084,13800000085,13800000086,13800000087,13800000088,13800000089,13800000090,13800000091,13800000092,13800000093,13800000094,13800000095,13800000096,13800000097,13800000098,13800000099,13800000100
+
+#搜索
+opensearch:
+  url: http://opensearch:9002/api/v1/simple_search
+
+#语音合成地址
+#tempDataPath: /home/voice/temp/
+tempDataPath: /data/cloud/voice/
+
+oss:
+  path: /data/cloud/
+  server: https://www.crc-musiconline.com/cloud/
+  salt: 2020zc&!!&r
+
+image:
+  server:
+    domain: https://www.crc-musiconline.com
+    bannerdomain: https://www.crc-musiconline.com
+    ndomain: https://www.crc-musiconline.com
+  converflag: /pp
+  conver:
+    style:
+      small: /a/
+      bigWithWater: /c/
+      unchange: /b/
+      pdf: /d/
+  default:
+    head:
+      recommend: https://www.crc-musiconline.com/cloud/img/20220318/0bf82520ec2d45f98d1fa759a64b0216.png
+      topic: http://114.67.240.206/cloud/img/20211204/ebc20b0914764e488e72c54927995e2d.png
+
+video:
+  url:
+    orignal: https://www.crc-musiconline.com
+
+local:
+  path: /data/cloud/
+  mappingPath: file:/data/cloud/
+  server: https://www.crc-musiconline.com/cloud/
+  maxsize: 5242880
+
+
+# 日志级别设置
+logging:
+  level:
+    com:
+      taike:
+        web: DEBUG
+
+ali:
+  pay:
+    appId: 2021002156619422
+    appPrivateKey: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCR0tIXnKeZYcyI4EyqCy2D3i7+LYF1T287mn8d0zR5jzLHXaJrJIWz7SeiM71N67Tb2DOf9d/LLRI3v8+hvx00/Rdv9SD1DwnXgsqcUjkRpMHEaRUn8X6Vxl3APeD4OQMuZjn+t+NT2LqDvZWAoSHE4sg2fEtPZmzTRI9+wdc9foFhwGqRs5LBNJoK+ESoYYCEEDganB6pu+R83/kVdApQEaAyeQYQYmsm+AHYqOYxTwuq2pouM5kGLs68rXWygjMLx4Wx/nSz80g2+e0yBeKmqBCUxp/4QAs4jD8ZTIYi9WVJPokrujxu8zAIRl3SRfezz4TdSMDeYIDPtCY10LgxAgMBAAECggEAab9+x8y85cg8cU5nijDM8wIfBgiuBwpx2cFySYiuVzD3XAiVDinQI+jpgwEOWQGDiKJC3c+KWWb3/SHGSr+zSIf5hSE4oz4invykPbSK2jampe6mfu7sI2VU+2JkUN3XZsCPch6cZmOW7o5/amZvfL4Q/yIn4w6eAJ+JiBy+IEMOcJabmVx8CYKlr1Y6acEOql4WBsuCcoeCxBK0V7YV8kx5XJoR5x5FChMQ0ElM3XxE35IG7xcIizT8HL6jaIlZSUoFnLghzGhhxWz09n6Jz+Tt1Qib8a2x5ucyWldaY7Vs+sQeaoT3SW/gnOpMtF1hfyummUCTlqa7wfG9xzII2QKBgQDnhfKGMh5JSbRWJwewJQ8lElYMCKrZahpET1Tgi9WBuwnqVZOt1xZWhextPP9Ho0HbpQsjVaRuNPuufMUeMSUSHAB2EuPMEleyv/FM9ZC5cwQI0rxmdJkqE+c5zs0/qMYSBVvE0eRYV+GkFBMVPG4IWJCoOzcWDFosikONHw+abwKBgQChPXTRyj8mHtXL+cQ1EFgCw3rYlcDUA0fsG82QNpFI1gAH8p4Of1e28d01YLY6eBGBcj9A43NzPjx9zeRw7yXaZCmeag8bcpJW8HEqXwUx6i+jxgNIE+/xzkrt/cttEkegJACfn0VqJdUF/1336cPdk/Let9tHxvLDW/rRVzinXwKBgAsgxw1oL0h6gG57pcTzowy3GuetKvkUPnr2DTBVyEdaBBn9TwHWCr7R5RFDE0oQMMQr5KMoJKUfatFyMc9HsW5zZhpGwig24Xw3+ZMnYnNncdQyvNd31zzMhBqlM/xRUmPfWg/VvtH4N2I5jMlChE9mYl2TqwwmP9dQNfr8eTWFAoGAGXREPuI4ueHgSoUxjlb4LeeCOzLY8B9ceU+iUgPrR55Q/vA0N4Gu7TidfVG5Mt3FlbPdfHbrwOOwVQPt7k4yoZlyYInJvMGHjKYEl3XMsiaQQsB9wCE1ney9M3j/ZkaefA9y8cAJC0rRqFK6GOsUeqRikPphaaFkraaVn/qu/O0CgYEAjSClP7A5Y2uQZvYTZFh0I763hWpd8q8uJ3pYqh8sf1QcyHM48HFyO9g14xNfjYYgsXIGBxZjPYbpJHceTa5M0yDMabxqCBpT4AfIWKZz9jcfiyzmbW54er5daKgG/jgVddGTz5585f3JyVGYfAoYP/fYGtt6QB7NP8VqkB0jLAY=
+    charset: utf-8
+    alipayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjLUAZJ2H9hrx6H11YIifjH/Ucr9BtfVUKodKPyoJPJSNIl6QyhZJiRPW7Y27ObEiBhJ7ofXwJs3cquTyzAIv1w6B4/PBOCfxBKNAyGOf1yO1rktKtQcjxvgRPMt63+ILW1Jb3EmR6y4tyB7UnYPXUO7LoMq6Q44jfW1PJZuOr+ehB9bQIXOHJmanWpjBjo6c1+hWYmu7G3PGBVELahhQlBrvvdzzxxyBmx6HOkKLrmWRD11eE915DX25L3gG8vKX/zGEEOtro41H46v32uORztxMofUUAoE3Ue38dTLcHWiDt6UzJwHLSg7SW9LB8pLPtQ4awJc72wqSkxm4DzElaQIDAQAB
+    format: json
+    gateway:  https://openapi.alipay.com/gateway.do
+    signType: RSA2
+    notifyUrl: https://www.crc-musiconline.com/app/notify/alipay/notify
+
+#语音路径
+#mappingPath: file:/home/voice/temp/
+mappingPath: file:/data/cloud/voice/
+
+#防爬虫接口请求阈值
+againtRobot:
+  againstRobotPeriod: 60
+  againstRobotLimitCount: 10
+  unloginViewCountLimit: 10
+#百度
+baidu:
+  # 百度bos相关参数
+  aip:
+    app-id: 17922258
+    api-key: pwOPmB9jhOnwBkYHAhFrsZqa
+    secret-key: sYiA8DlCXGz60nQztpnloAnmk9brEefP
+
+captcha:
+  get:
+    remoteUrl: http://captcha:8083/captcha/get
+
+resttemplate:
+  httpclient:
+    connectTimeout: 10000
+    readTimeout: 5000
+
+order:
+  # 外部订单超时时长（单位：分钟）
+  payExpireTime: 15
+  # 外部订单名称前缀
+  orderNamePrefix: 中唱在线-
+
+#音乐厂牌默认图标
+musicbrandiconurl: https://www.crc-musiconline.com/cloud/img/20220318/12a57ff268b747f690acf89364fd4eda.png
+
+#vip会员封面图
+vipImgUrl: https://admin.crc-musiconline.com/cloud/img/20211224/cfea48475028489b9f525c095cf76df4.png
+
+#音频处理服务地址
+service:
+  remote:
+    audioProcessUrl: http://drm-server:8199/api/v1/audio/get/{musicpath}/{quality}/{musicId}
+    userBehaviorReportUrl: http://114.67.240.206:8200/event/api/v1/report
+    videoUrlConvert: http://drm-server:8199/api/v1/video/get/%s
+
+h5Url:
+  share:
+    music: https://h5.crc-musiconline.com/audio/%s
+    videoShort: https://h5.crc-musiconline.com/smallVideo/%s
+    video: https://h5.crc-musiconline.com/video/%s
+
+# 极光推送配置
+push:
+  appKey: a038ce9b7b5f74113d5bfa22
+  masterSecret: 9029500d264eabca367ccb34
+  # 推送true 生产环境，false 开发环境
+  apnsProduction: true
+  buyVipMessage: 您已成功开通【%s】，即刻起，任享海量专属曲库和豪华VIP专属特权
+
+stat:
+  server:
+    url: https://www.crc-musiconline.com/event/api/v1/report

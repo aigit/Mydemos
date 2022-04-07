@@ -10,19 +10,13 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 @Slf4j
 public class DemoTest {
 
-    public static void main(String[] args) {
-        DemoTest demoTest = new DemoTest();
-        //demoTest.testPredicate();
-        //demoTest.testThreadLocal();
-        //demoTest.testMaxStream();
-        //demoTest.testStreamSum();
-        demoTest.testFlatMap();
-    }
+
 
     private void testPredicate(){
         Predicate<Integer> integerPredicate = x->x>5;
@@ -74,4 +68,58 @@ public class DemoTest {
         return numbers.reduce(0,(x,y)->x+y).intValue();
     }
 
+
+    private void testCountLowerChar(){
+        String mine = "abCDeFGhiJK";
+        final long count = mine.chars().filter(c -> (c>96 && c < 124)).count();
+        log.info("小写字母个数:{},a:{}",count,(int)'a');
+    }
+
+    private void findMostLowerCharString(){
+        List<String> fromStringList = new ArrayList<>();
+        fromStringList.add("abC");
+        fromStringList.add("aBC");
+        fromStringList.add("abcD");
+        fromStringList.add("abcdE");
+        fromStringList.add("abcdeF");
+        final Optional<String> max = fromStringList.stream().max(Comparator.comparing(s -> (s.chars().filter(c -> (c > 96 && c < 124)).count())));
+
+        log.info("最多小字母的:{}",max.orElse("没找到"));
+
+    }
+
+    private void reduceMakeMap(){
+        List<String> fromStringList = new ArrayList<>();
+        fromStringList.add("abC");
+        fromStringList.add("aBC");
+        fromStringList.add("abcD");
+        fromStringList.add("abcdE");
+        fromStringList.add("abcdeF");
+        final List<String> collect = fromStringList.stream().
+                map(s -> s.toUpperCase()).collect(Collectors.toList());
+        collect.forEach(System.out::println);
+    }
+
+    private void testMapToNumbers(){
+        final Stream<Integer> integerStream = Stream.of(1, 3, 4, 5, 2, 6, 7, 8, 9, 10);
+        final IntSummaryStatistics intSummaryStatistics = integerStream.mapToInt(x -> x).summaryStatistics();
+        log.info("max:{},min:{},aver:{},sum:{}",
+                intSummaryStatistics.getMax(),
+                intSummaryStatistics.getMin(),
+                intSummaryStatistics.getAverage(),
+                intSummaryStatistics.getSum());
+    }
+
+    public static void main(String[] args) {
+        DemoTest demoTest = new DemoTest();
+        //demoTest.testPredicate();
+        //demoTest.testThreadLocal();
+        //demoTest.testMaxStream();
+        //demoTest.testStreamSum();
+        //demoTest.testFlatMap();
+        //demoTest.testCountLowerChar();
+        //demoTest.findMostLowerCharString();
+        //demoTest.reduceMakeMap();
+        demoTest.testMapToNumbers();
+    }
 }

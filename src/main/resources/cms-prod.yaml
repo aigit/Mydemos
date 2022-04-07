@@ -1,0 +1,102 @@
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://mysql-cn-north-1-b08cbb61002243d3.rds.jdcloud.com/zc_online?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: zc
+    password: CGj9R57maki+D8RJ
+    filters: wall,mergeStat
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
+  #####redis
+  redis:
+    host: redis-v0j29xp6j3yw-proxy-nlb.jvessel-open-hb.jdcloud.com
+    port: 6379
+    password: CGj9R57m
+    jedis:
+      pool:
+        max-idle: 10
+        min-idle: 5
+        max-active: 100
+        max-wait: 3000
+        timeout: 6005
+
+#云存储配置
+yun:
+  oss:
+    accessKeyId: 67A71BFC3D6E96C1EB3844C6A3D6F0EF
+    accessKeySecret: 8BB62F673045DEB7ADEADE331C4B4071
+    bucketName: zc-test
+    fileHost: https://zc-test.s3.cn-north-1.jdcloud-oss.com
+    endpoint: s3.cn-north-1.jdcloud-oss.com
+
+#ffmpeg配置
+ffmpeg:
+  FfmpegPath: /usr/bin/ffmpeg
+  FfmpegProbe: /usr/bin/ffprobe
+
+#搜索
+opensearch:
+  url: http://opensearch:9002/api/v1/simple_push
+  key: crc_pre
+
+oss:
+  path: /data/cloud
+  mappingPath: file:/data/cloud/
+  server: https://www.crc-musiconline.com/cloud
+  cmsServer: https://admin.crc-musiconline.com/cloud
+  withoutDomain: /cloud
+  replaceDomain: 'https://www.crc-musiconline.com,https://admin.crc-musiconline.com,http://172.16.192.3'
+  cmsPicDomain:
+ueditor:
+  upload:
+    img:
+      # 执行上传图片的action名称 别动
+      imageActionName: uploadimage
+      # 提交的图片表单名称 别动
+      imageFieldName: upfile
+      # 上传大小限制，单位B  10 * 1024 * 1024
+      imageMaxSize: 10485760
+      # 上传图片格式显示
+      imageAllowFiles:
+        - .png
+        - .jpg
+        - .jpeg
+      # 是否压缩图片,默认是true
+      imageCompressEnable: true
+      # 图片压缩最长边限制
+      imageCompressBorder: 1600
+      # 插入的图片浮动方式
+      imageInsertAlign: none
+    video:
+      videoActionName: uploadvideo
+      videoFieldName: upfile
+      videoMaxSize: 1073741824
+      videoAllowFiles:
+        - .mp4
+        - .mpg
+        - .rmvb
+        - .flv
+        - .wav
+        - .mpeg
+#音乐厂牌默认图标
+musicbrandiconurl: https://pre-v2.crc-musiconline.com/cloud/img/20220318/12a57ff268b747f690acf89364fd4eda.png
+
+#订单超时 取消订单 单位分钟
+order:
+  payOverTime: 15
+push:
+  appKey: a038ce9b7b5f74113d5bfa22
+  masterSecret: 9029500d264eabca367ccb34
+  # 推送true 生产环境，false 开发环境
+  apnsProduction: true
+  vipOverTimeMessage: 您开通的会员已过期，现在续费可继续享受海量专属曲库和豪华VIP特权，重启高品质的音乐世界！
+
+#音频处理服务地址
+service:
+  remote:
+    audioProcessUrl: http://drm-server:8199/api/v1/audio/get/{musicpath}/{quality}/{musicId}
+    videoUrlConvert: http://drm-server:8199/api/v1/video/get/%s
+video:
+  url:
+    orignal: https://www.crc-musiconline.com

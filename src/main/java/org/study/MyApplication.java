@@ -2,6 +2,7 @@ package org.study;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.study.collection.map.HashMapTest;
 import org.study.concurrent.atomic.CasCounterTest;
 import org.study.concurrent.atomic.LamdaAtomicTest;
@@ -27,6 +28,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
 
 @Slf4j
+@SpringBootApplication
 public class MyApplication {
 
     public static void main(String[] args) throws IOException, InterruptedException {

@@ -4,18 +4,21 @@ import org.study.util.PinyinUtil;
 
 import java.io.File;
 import java.sql.Time;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StringTest {
 
     public void test() throws ExecutionException, InterruptedException {
 
-        final ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+        /*final ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         final ScheduledFuture<?> schedule = scheduledExecutorService.schedule(()->{
             final String pinyin = PinyinUtil.handle("我测一个");
             System.out.println("我开始跑了"+pinyin);
-        }, 13, TimeUnit.SECONDS);
+        }, 13, TimeUnit.SECONDS);*/
 
 
 
@@ -34,9 +37,17 @@ public class StringTest {
         String url1 = "/cloud/audio/20220316/aaf62cfbd3364ab1a01ffb94f3b46144-m-0.mp3";
         System.out.println(url1.substring(url1.lastIndexOf("/")+1,url1.length()));
 
-        for (int i = 0; i < 1000; i++) {
-            System.out.println("suiji:"+new Random().nextInt(10));
-        }
+
+        /*String sbxiede="器乐=西洋乐器乐曲=小号";
+        String[] split = sbxiede.split("=");
+        System.out.println("shabxiede:"+split[3]);*/
+
+        final List<Integer> collect = Stream.of(1, 2, 4).collect(Collectors.toList());
+        collect.forEach(System.out::println);
+
+        String domain = "cn.blog.xyz";
+        System.out.println("格式:"+domain.substring(domain.lastIndexOf(".")+1));
+
     }
 
 }

@@ -116,8 +116,12 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
 
  - 类加载阶段
    
-   ```html
-   加载-->链接(验证、准备(final常量会初始化)、解析)-->初始化
+   ```html 
+   加载-->链接(验证、准备(final常量会初始化)、解析)-->初始化 
+   加载 
+      -- Bootstrap,Extend Classloader,Application ClassLoader
+   链接
+      -- 验证，准备，解析
    ```
    ![img_3.png](img_3.png)
  

@@ -1,8 +1,6 @@
 package org.study.concurrent;
 
 import lombok.extern.slf4j.Slf4j;
-import org.redisson.Redisson;
-import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.redisson.spring.data.connection.RedissonConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +9,10 @@ import org.springframework.data.redis.connection.BitFieldSubCommands;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.study.MyApplication;
 import org.study.concurrent.locks.ReentrantLockTest;
+import org.study.dto.Category;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
@@ -56,8 +56,9 @@ public class Test {
 
     @org.junit.jupiter.api.Test
     public void testHyperLogLog(){
-        final RedisConnection connection = redissonConnectionFactory.getConnection();
-        connection.hyperLogLogCommands();
+        Category category = Category.builder().price(new BigDecimal("34.56")).id(1).build();
+        log.info("cate:{}",category);
+
     }
 
 }

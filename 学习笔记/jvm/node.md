@@ -23,6 +23,8 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
 ```
 ---
 垃圾回收  
+![img_8.png](img_8.png) 
+![img_7.png](img_7.png)
  - 栈上分配
    - 逃逸分析 -XX:+DoEscapeAnalysis
    - 标量分配 -XX:+EliminateAllocations
@@ -142,4 +144,10 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
    - 不合理作用域
    - HashSet改变hash值
    - Map缓存泄露(改用WeekHashMap)
+   ``` 
+ - 代码编写优化准则 
+   ```html
+   - 善用jvm的逃逸分析，变量作用域内使用完以后置为null利于GC
+   - 利用逃逸分析的栈上分配
+   - 
    ```

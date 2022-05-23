@@ -11,7 +11,8 @@ public class TestInterrupt2 {
         Thread thread = new Thread(()->{
             while (true){
                 try {
-                    TimeUnit.MILLISECONDS.sleep(300L);
+                    TimeUnit.SECONDS.sleep(10L);
+                    log.info("被叫醒...");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

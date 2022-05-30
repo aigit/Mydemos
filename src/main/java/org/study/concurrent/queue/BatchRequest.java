@@ -26,40 +26,38 @@ public class BatchRequest {
         final ExecutorService executorService = Executors.newFixedThreadPool(12);
         AtomicInteger totalStock = new AtomicInteger(60);//库存量
 
-        List<RequestPromise> requestList = new ArrayList<>();
-        /*
-            模拟122个请求
-         */
-        for (int i = 1; i < 122; i++) {
-            int j = i;
-            executorService.submit(()->{
-                UserRequest userRequest = new UserRequest(1,String.valueOf(j),String.valueOf("order"+j));
-                RequestPromise requestPromise = new RequestPromise(userRequest,null);
-                BLOCKING_QUEUE.offer(requestPromise);
-                requestList.add(requestPromise);
-            });
-        }
-
-        TimeUnit.SECONDS.sleep(5L);//休息5秒后拿结果
-
+        int requestCount = 122;// 计划模拟的请求数
+        CountDownLatch requestCountDown = new CountDownLatch(requestCount);
         executorService.execute(()->{
             List<RequestPromise> promiseList = new ArrayList<>();
             while (true){
+
                 /**
-                 * 退化为消费队列
+                 * 退化为队列单个消费
                  */
                 final int queueSize = BLOCKING_QUEUE.size();
-                if(queueSize>0 && queueSize<=BATCH_NUMBER){
+                //log.info("队列中的任务数:{}",queueSize);
+                if(queueSize>=0 && queueSize<=BATCH_NUMBER){
+                    /*
+                       控制边界再判断当前队列中是否有残留
+                     */
+                    if(!promiseList.isEmpty()){
+                        promiseList.forEach(p->{
+                            eachTaskHandler(p,totalStock,executorService,requestCountDown);
+                        });
+                        promiseList.clear();
+                        continue;
+                    }
+
                     RequestPromise p = null;
                     try {
                         p = BLOCKING_QUEUE.take();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    eachTaskHandler(p,totalStock,executorService);
+                    eachTaskHandler(p,totalStock,executorService,requestCountDown);
                     continue;
                 }
-                //log.info("队列中的任务数:{}",queueSize);
                 /*
                   加入批量列表
                  */
@@ -68,18 +66,6 @@ public class BatchRequest {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-
-                /*
-                 不足一批退化为单个处理
-                 */
-                /*if(promiseList.size()>0 && promiseList.size()<20){
-                    promiseList.forEach(p->{
-                        eachTaskHandler(p,totalStock,executorService);
-                    });
-                    promiseList.clear();
-                    continue;
-                }*/
 
                 /**
                  * 批量消费 并控制每批的数量为BATCH_NUMBER
@@ -100,6 +86,7 @@ public class BatchRequest {
                             p.setResult(result);
                             final Future<RequestPromise> future = executorService.submit(p);
                             p.setFuture(future);
+                            requestCountDown.countDown();
                         });
                         promiseList.clear();
                         continue;
@@ -113,6 +100,7 @@ public class BatchRequest {
                             p.setResult(result);
                             final Future<RequestPromise> future = executorService.submit(p);
                             p.setFuture(future);
+                            requestCountDown.countDown();
                         });
                         promiseList.clear();
                         continue;
@@ -123,7 +111,7 @@ public class BatchRequest {
                      */
                     if(totalStock.get()<sum && totalStock.get()>0){
                         promiseList.forEach(p->{
-                            eachTaskHandler(p,totalStock,executorService);
+                            eachTaskHandler(p,totalStock,executorService,requestCountDown);
                         });
                         promiseList.clear();
                         continue;
@@ -133,15 +121,25 @@ public class BatchRequest {
             }
         });
 
+        List<RequestPromise> requestList = new ArrayList<>();
+        /*
+            模拟requestCount个请求
+         */
+        for (int i = 1; i <=requestCount; i++) {
+            UserRequest userRequest = new UserRequest(1,String.valueOf(i),String.valueOf("order"+i));
+            RequestPromise requestPromise = new RequestPromise(userRequest,null);
+            requestList.add(requestPromise);
+            executorService.submit(()->{
+                BLOCKING_QUEUE.offer(requestPromise);
+            });
+        }
 
-
-
-        TimeUnit.SECONDS.sleep(5L);//休息5秒后拿结果
+        requestCountDown.await(); //等待合并请求处理完成
 
         requestList.forEach(r->{
             try {
-                final RequestPromise callResult = r.getFuture().get(3000,TimeUnit.MILLISECONDS);
-                log.info("{}抢到了吗:{}",callResult.getRequest(), callResult.getResult());
+                final RequestPromise callResult = r.getFuture().get(200,TimeUnit.MILLISECONDS);
+                log.info("{}抢到了吗:{}",r.getRequest(), callResult.getResult());
             } catch (Exception e) {
                 log.error("发生了异常:{},e:{}",r,e);
             }
@@ -156,7 +154,9 @@ public class BatchRequest {
      * @param totalStock 库存数量
      * @param executorService
      */
-    private static void eachTaskHandler(RequestPromise p,AtomicInteger totalStock,ExecutorService executorService){
+    private static void eachTaskHandler(RequestPromise p,AtomicInteger totalStock,
+                                        ExecutorService executorService,
+                                        CountDownLatch requestCountDown){
         if(totalStock.get()>=p.getRequest().getWantCount()){
             totalStock.addAndGet(-p.getRequest().getWantCount());
             Result result = new Result(true,"单个抢单成功");
@@ -167,6 +167,7 @@ public class BatchRequest {
         }
         final Future<RequestPromise> future = executorService.submit(p);
         p.setFuture(future);
+        requestCountDown.countDown();
     }
 
 

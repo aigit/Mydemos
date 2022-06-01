@@ -136,6 +136,7 @@ StringTable 串池的大小调优 如果字符串常量池比较大,
    ```
    ![img_3.png](img_3.png)
  
+   ![img_11.png](img_11.png)
 
  - 内存泄露常见场景
    ```html

@@ -2,6 +2,7 @@
 - Synchronized 
 ```html
   synchronized只能锁对象或类
+  CAS自旋锁是为了避免线程阻塞-唤醒导致的线程切换带来的成本
 ```
 ![img.png](img.png)
   ![img_1.png](img_1.png)

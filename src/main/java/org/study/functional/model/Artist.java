@@ -8,5 +8,7 @@ import java.util.Set;
 public class Artist {
 
     private Set<Singer> singers;
+    private String bandName;
+
 
 }

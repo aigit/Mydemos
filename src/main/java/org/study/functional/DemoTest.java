@@ -8,6 +8,8 @@ import org.study.functional.model.Track;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -98,6 +100,7 @@ public class DemoTest {
         final List<String> collect = fromStringList.stream().
                 map(s -> s.toUpperCase()).collect(Collectors.toList());
         collect.forEach(System.out::println);
+
     }
 
     private void testMapToNumbers(){

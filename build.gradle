@@ -25,14 +25,14 @@ configurations {
 }
 
 repositories {
-    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
     mavenCentral()
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-web')
-    compile 'org.redisson:redisson-spring-data-25:3.16.4'
-    compile 'org.redisson:redisson-spring-boot-starter:3.16.4'
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation 'org.redisson:redisson-spring-data-25:3.16.4'
+    implementation 'org.redisson:redisson-spring-boot-starter:3.16.4'
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 
     //implementation group: 'io.netty', name: 'netty-all', version: '4.1.51.Final'

@@ -6,6 +6,8 @@ import org.study.util.Clock;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Slf4j
@@ -15,9 +17,7 @@ public class ParallelTest {
 
     public static void main(String[] args) throws InterruptedException {
         Clock clock = new Clock();
-
         TimeUnit.SECONDS.sleep(3);
-
         clock.getDuration();
 
 
